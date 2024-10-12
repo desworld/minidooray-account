@@ -1,0 +1,22 @@
+package com.nhnacademy.minidooray.service;
+
+import com.nhnacademy.minidooray.entity.User;
+
+//회원 관련 정보 서비스 처리
+public interface UserService {
+    //회원가입
+    void registerUser(User user);
+
+    //로그인
+    User doLogin(String userId, String password);
+
+    //조회
+    User getUser(String userId);
+
+    //수정
+    void editUser(String userId);
+
+    //삭제
+    boolean deleteUser(String userId);
+
+}
