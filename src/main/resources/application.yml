@@ -1,3 +1,6 @@
+server:
+  port: 7070
+
 spring:
   application:
     name: NHN Academy - Spring Boot JPA
@@ -8,7 +11,7 @@ spring:
     password: mH9oewcq!
   jpa:
     database: mysql
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create
     open-in-view: false
     show-sql: true
     properties:

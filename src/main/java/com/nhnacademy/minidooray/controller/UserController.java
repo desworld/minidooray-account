@@ -1,9 +1,6 @@
 package com.nhnacademy.minidooray.controller;
 
-import com.nhnacademy.minidooray.dto.UserLoginRequest;
-import com.nhnacademy.minidooray.dto.UserLoginResponse;
-import com.nhnacademy.minidooray.dto.UserRegisterRequest;
-import com.nhnacademy.minidooray.dto.UserRegisterResponse;
+import com.nhnacademy.minidooray.dto.*;
 import com.nhnacademy.minidooray.entity.User;
 import com.nhnacademy.minidooray.service.UserService;
 import jakarta.validation.Valid;
@@ -35,13 +32,23 @@ public class UserController {
 
     //회원정보 조회
     @GetMapping("/api/mypage/{userId}")
-    public User mypage(@PathVariable String userId) {
-        return null;
+    public ResponseEntity<UserMypageResponse> mypage(@PathVariable String userId) {
+        User user = userService.getUser(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(new UserMypageResponse(user));
     }
 
-    //회원 탈퇴
+    //회원 정보 수정
+    @PutMapping("/api/edit/{userId}")
+    public ResponseEntity<User> editUser(@PathVariable String userId, @Valid @RequestBody UserEditRequest request) {
 
-
-
+        return null;
+    }
+//
+//    //회원 탈퇴
+//    @DeleteMapping("/api/resign/{userID}")
+//    public ResponseEntity resignUser(@PathVariable String userId) {
+//        userService.deleteUser(userId);
+//        return ResponseEntity.status(HttpStatus.OK).build();
+//    }
 
 }

@@ -17,11 +17,11 @@ public class UserRegisterRequest {
     private String userId;
 
     @NotNull
-    @Length(max = 50)
+    @Length(max = 200)
     private String password;
 
     @NotNull
-    @Length(max = 200)
+    @Length(max = 50)
     private String email;
 
 

@@ -19,7 +19,7 @@ public class UserLoginResponse {
     private String userId;
 
     @NotNull
-    @Length(max = 50)
+    @Length(max = 200)
     private String password;
 
     public UserLoginResponse(User user) {

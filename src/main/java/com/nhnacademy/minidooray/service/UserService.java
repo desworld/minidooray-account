@@ -1,5 +1,6 @@
 package com.nhnacademy.minidooray.service;
 
+import com.nhnacademy.minidooray.dto.UserEditRequest;
 import com.nhnacademy.minidooray.dto.UserRegisterRequest;
 import com.nhnacademy.minidooray.entity.User;
 
@@ -15,9 +16,9 @@ public interface UserService {
     User getUser(String userId);
 
     //수정
-    void editUser(String userId);
+    void editUser(String userId, UserEditRequest request);
 
     //삭제
-    boolean deleteUser(String userId);
+    void deleteUser(String userId);
 
 }

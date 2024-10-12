@@ -83,6 +83,7 @@
   ```
   {
     "id": "",
+    "userId": "",
     "password": "",
     "email" : "",
     "last_login_at" : "",
