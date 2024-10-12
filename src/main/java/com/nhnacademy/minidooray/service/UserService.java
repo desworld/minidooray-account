@@ -9,7 +9,7 @@ public interface UserService {
     void registerUser(UserRegisterRequest request);
 
     //로그인
-    User doLogin(String userId, String password);
+    User doLogin(String userId);
 
     //조회
     User getUser(String userId);

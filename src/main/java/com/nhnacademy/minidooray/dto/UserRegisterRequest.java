@@ -14,7 +14,7 @@ public class UserRegisterRequest {
 
     @NotNull
     @Length(max = 50)
-    private String id;
+    private String userId;
 
     @NotNull
     @Length(max = 50)

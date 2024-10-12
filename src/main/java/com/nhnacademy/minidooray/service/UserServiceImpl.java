@@ -17,13 +17,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerUser(UserRegisterRequest user) {
-        User savedUser = new User(user.getId(), user. getPassword(), user.getEmail());
+        User savedUser = new User(user.getUserId(), user.getPassword(), user.getEmail());
         userRepository.save(savedUser);
     }
 
     @Override
-    public User doLogin(String userId, String password) {
-        Optional<User> user = userRepository.findByUserIdAndPassword(userId, password);
+    public User doLogin(String userId) {
+        Optional<User> user = userRepository.findByUserId(userId);
         if(user.isEmpty()) {
             throw new UserNotFoundException();
         }

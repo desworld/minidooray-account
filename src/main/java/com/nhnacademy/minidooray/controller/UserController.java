@@ -1,5 +1,6 @@
 package com.nhnacademy.minidooray.controller;
 
+import com.nhnacademy.minidooray.dto.UserLoginRequest;
 import com.nhnacademy.minidooray.dto.UserLoginResponse;
 import com.nhnacademy.minidooray.dto.UserRegisterRequest;
 import com.nhnacademy.minidooray.dto.UserRegisterResponse;
@@ -20,16 +21,16 @@ public class UserController {
 
     //회원가입 처리
     @PostMapping("/api/account/register")
-    public UserRegisterResponse registerUser(@Valid @RequestBody UserRegisterRequest request) {
+    public ResponseEntity<UserRegisterResponse> registerUser(@Valid @RequestBody UserRegisterRequest request) {
         userService.registerUser(request);
-        return new UserRegisterResponse(request.getId());
+        return ResponseEntity.status(HttpStatus.OK).body(new UserRegisterResponse(request.getUserId()));
     }
 
     //로그인 처리
-    @PostMapping
-    public UserLoginResponse login() {
-
-        return  null;
+    @PostMapping("/api/login")
+    public ResponseEntity<UserLoginResponse> login(@Valid @RequestBody UserLoginRequest request) {
+        User user = userService.doLogin(request.getUserId());
+        return ResponseEntity.status(HttpStatus.OK).body(new UserLoginResponse(user));
     }
 
     //회원정보 조회
