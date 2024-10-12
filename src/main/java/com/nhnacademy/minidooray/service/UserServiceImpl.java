@@ -1,11 +1,14 @@
 package com.nhnacademy.minidooray.service;
 
+import com.nhnacademy.minidooray.dto.UserRegisterRequest;
 import com.nhnacademy.minidooray.entity.User;
+import com.nhnacademy.minidooray.entity.UserStatus;
 import com.nhnacademy.minidooray.exception.UserNotFoundException;
 import com.nhnacademy.minidooray.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -16,8 +19,10 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public void registerUser(User user) {
+    public void registerUser(UserRegisterRequest user) {
+        User savedUser = new User(user.getId(), user. getPassword(), user.getEmail());
 
+        userRepository.save(savedUser);
     }
 
     @Override

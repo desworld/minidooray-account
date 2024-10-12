@@ -1,10 +1,8 @@
 package com.nhnacademy.minidooray.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +28,7 @@ public class User {
     private String userId;
 
     @NotNull
+    @Email
     @Length(max = 50)
     private String email;
 
@@ -39,5 +39,12 @@ public class User {
     private LocalDateTime lastLoginAt;
 
     @NotNull
-    private UserStatus status;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status = UserStatus.ACTIVE;
+
+    public User (String userId, String password, String email) {
+        this.userId = userId;
+        this.password = password;
+        this.email = email;
+    }
 }
