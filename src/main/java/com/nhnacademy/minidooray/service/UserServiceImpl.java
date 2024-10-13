@@ -30,33 +30,42 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User doLogin(String userId) {
-        Optional<User> user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = LocalDateTime.now().format(formatter);
-        user.get().setLastLoginAt(LocalDateTime.parse(formattedDateTime, formatter));
+        user.setLastLoginAt(LocalDateTime.parse(formattedDateTime, formatter));
 
         if(Objects.isNull(user)) {
             throw new UserNotFoundException();
         }
-        return user.get();
+        return user;
     }
 
     @Override
     public User getUser(String userId) {
-        Optional<User> user = userRepository.findByUserId(userId);
+        User user = userRepository.findByUserId(userId);
 
-        return user.get();
+        return user;
     }
 
     @Override
     public void editUser(String userId, UserEditRequest request) {
-        Optional<User> user = userRepository.findByUserId(userId);
-//        user.get().setUserId(request.);
+        User user = userRepository.findByUserId(userId);
+
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+
+        userRepository.save(user);
+
     }
 
     @Override
     public void deleteUser(String userId) {
+        User user = userRepository.findByUserId(userId);
+
+        //UserNotFoundException
+
         userRepository.deleteById(userId);
     }
 }

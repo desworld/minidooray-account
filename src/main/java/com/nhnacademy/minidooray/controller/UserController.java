@@ -39,16 +39,16 @@ public class UserController {
 
     //회원 정보 수정
     @PutMapping("/api/edit/{userId}")
-    public ResponseEntity<User> editUser(@PathVariable String userId, @Valid @RequestBody UserEditRequest request) {
-
-        return null;
+    public ResponseEntity<UserEditResponse> editUser(@PathVariable String userId, @Valid @RequestBody UserEditRequest request) {
+        userService.editUser(userId, request);
+        return ResponseEntity.status(HttpStatus.OK).body(new UserEditResponse(request.getId(), request.getUserId(), request.getEmail(), request.getPassword(), request.getStatus()));
     }
-//
+
 //    //회원 탈퇴
-//    @DeleteMapping("/api/resign/{userID}")
-//    public ResponseEntity resignUser(@PathVariable String userId) {
-//        userService.deleteUser(userId);
-//        return ResponseEntity.status(HttpStatus.OK).build();
-//    }
+    @DeleteMapping("/api/resign/{userID}")
+    public ResponseEntity resignUser(@PathVariable String userId) {
+        userService.deleteUser(userId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 
 }

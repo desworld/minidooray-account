@@ -23,9 +23,13 @@ GET http://localhost:7070/api/mypage/test
 DELETE http://localhost:7070/api/resign/test
 
 ### 회원 수정
-POST http://localhost:7070/api/edit/test
+PUT http://localhost:7070/api/edit/test
 Content-Type:application/json
 
 {
-    "password":"1234"
+  "id": 1,
+  "userId": "test",
+  "email": "kk@gmail.com",
+  "password": "1234",
+  "status": "ACTIVE"
 }
