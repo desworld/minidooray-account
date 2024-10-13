@@ -4,6 +4,8 @@ import com.nhnacademy.minidooray.dto.UserEditRequest;
 import com.nhnacademy.minidooray.dto.UserRegisterRequest;
 import com.nhnacademy.minidooray.entity.User;
 
+import java.util.List;
+
 //회원 관련 정보 서비스 처리
 public interface UserService {
     //회원가입
@@ -14,6 +16,9 @@ public interface UserService {
 
     //조회
     User getUser(String userId);
+
+    //휴면 회원 조회
+    void updateOldUsersToInactive();
 
     //수정
     void editUser(String userId, UserEditRequest request);

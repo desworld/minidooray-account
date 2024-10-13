@@ -2,12 +2,15 @@ package com.nhnacademy.minidooray.controller;
 
 import com.nhnacademy.minidooray.dto.*;
 import com.nhnacademy.minidooray.entity.User;
+import com.nhnacademy.minidooray.exception.UserNotFoundException;
 import com.nhnacademy.minidooray.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,6 +37,10 @@ public class UserController {
     @GetMapping("/api/mypage/{userId}")
     public ResponseEntity<UserMypageResponse> mypage(@PathVariable String userId) {
         User user = userService.getUser(userId);
+
+        if (Objects.isNull(user)) {
+            throw new UserNotFoundException("user not found.");
+        }
         return ResponseEntity.status(HttpStatus.OK).body(new UserMypageResponse(user));
     }
 
@@ -44,9 +51,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(new UserEditResponse(request.getId(), request.getUserId(), request.getEmail(), request.getPassword(), request.getStatus()));
     }
 
-//    //회원 탈퇴
-    @DeleteMapping("/api/resign/{userID}")
-    public ResponseEntity resignUser(@PathVariable String userId) {
+    //회원 탈퇴(상태 변경)
+    @DeleteMapping("/api/resign/{userId}")
+    public ResponseEntity<HttpStatus> resignUser(@PathVariable String userId) {
         userService.deleteUser(userId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

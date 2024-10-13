@@ -33,3 +33,6 @@ Content-Type:application/json
   "password": "1234",
   "status": "ACTIVE"
 }
+
+### 휴면 회원 업데이트
+PUT http://localhost:7070/users/inactive

@@ -96,10 +96,14 @@
 * Request
 
   ```
-  PUT http://localhost:8080//api/edit/{userId}
+  PUT http://localhost:8080/api/edit/{userId}
 
   {
-    "name" : ""
+    "id": ,
+    "userId": "",
+    "email": "",
+    "password": "",
+    "status": ""
   }
   ```
 
@@ -108,9 +112,9 @@
   ```
   {
     "id": "",
+    "userId": "",
     "password": "",
     "email" : "",
-    "last_login_at" : "",
     "status" : ""
   }
     ```
