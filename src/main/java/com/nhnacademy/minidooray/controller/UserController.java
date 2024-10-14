@@ -14,7 +14,7 @@ import java.util.Objects;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping
+@RequestMapping("/account")
 public class UserController {
 
     private final UserService userService;
